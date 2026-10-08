@@ -1,0 +1,229 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-9">
+
+
+            <!-- Header -->
+
+            <div class="d-flex align-items-center mb-4">
+
+                <img
+                    src="{% static 'pitch_assistant/images/assistant_icon.png' %}"
+                    alt="Pitch Assistant"
+                    style="
+                        width:48px;
+                        height:48px;
+                        object-fit:cover;
+                        border-radius:13px;
+                    "
+                    class="me-3"
+                >
+
+                <div>
+
+                    <h4 class="mb-1">
+                        Your Game Pitch
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        Here's what stands out from your idea.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Core Idea -->
+
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                <div class="card-body p-4">
+
+                    <small class="text-muted">
+                        CORE IDEA
+                    </small>
+
+                    <h5 class="mt-2">
+                        What your game is about
+                    </h5>
+
+                    <p class="mb-0">
+                        {{ analysis.core_idea }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Main Hook -->
+
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                <div class="card-body p-4">
+
+                    <small class="text-muted">
+                        MAIN HOOK
+                    </small>
+
+                    <h5 class="mt-2">
+                        What makes people curious
+                    </h5>
+
+                    <div
+                        class="p-3 rounded-3 mt-3"
+                        style="background:#f5f7f6;"
+                    >
+
+                        {{ analysis.main_hook }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- USP -->
+
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                <div class="card-body p-4">
+
+                    <small class="text-muted">
+                        UNIQUE SELLING POINT
+                    </small>
+
+                    <h5 class="mt-2">
+                        Why this game is different
+                    </h5>
+
+                    <p class="mb-0">
+                        {{ analysis.unique_selling_point }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Publisher Description -->
+
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <small class="text-muted">
+                                PUBLISHER DESCRIPTION
+                            </small>
+
+                            <h5 class="mt-2 mb-0">
+                                Your pitch draft
+                            </h5>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="btn btn-outline-dark btn-sm rounded-pill"
+                            onclick="copyPitch()"
+                        >
+                            Copy
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="pitchText"
+                        class="mt-4"
+                        style="line-height:1.7;"
+                    >
+
+                        {{ analysis.publisher_description }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Keywords -->
+
+            {% if analysis.keywords %}
+
+            <div class="mb-4">
+
+                <small class="text-muted d-block mb-2">
+                    KEYWORDS FOUND
+                </small>
+
+                <div class="d-flex flex-wrap gap-2">
+
+                    {% for keyword in analysis.keywords %}
+
+                        <span
+                            class="badge rounded-pill bg-light text-dark border px-3 py-2"
+                        >
+                            {{ keyword }}
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+
+            <!-- Actions -->
+
+            <div class="d-flex justify-content-between mt-4">
+
+                <a
+                    href="{% url 'pitch_assistant:new_pitch' %}"
+                    class="btn btn-dark rounded-3 px-4"
+                >
+                    Start New Pitch →
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function copyPitch() {
+
+    const pitch =
+        document.getElementById("pitchText").innerText;
+
+    navigator.clipboard.writeText(pitch);
+
+}
+
+</script>
+
+
+{% endblock content %}

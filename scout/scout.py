@@ -45,12 +45,17 @@ class Scout:
         game_type = requirements.get("game_type")
         platforms = requirements.get("platforms", [])
 
-        # Game type = 50 points
+        # -------------------------
+        # GAME TYPE — 30 POINTS
+        # -------------------------
         if game_type:
-            if game_type.lower() in publisher.game_types_focus.lower():
-                score += 50
 
-        # Platforms = 50 points
+            if game_type.lower() in publisher.game_types_focus.lower():
+                score += 30
+
+        # -------------------------
+        # PLATFORMS — 40 POINTS
+        # -------------------------
         if platforms:
 
             publisher_platforms = [
@@ -61,14 +66,27 @@ class Scout:
             matched_platforms = 0
 
             for platform in platforms:
+
                 if platform.lower() in publisher_platforms:
                     matched_platforms += 1
 
             platform_score = (
                 matched_platforms / len(platforms)
-            ) * 50
+            ) * 40
 
             score += platform_score
+
+        # -------------------------
+        # PITCH URL — 20 POINTS
+        # -------------------------
+        if publisher.pitch_url:
+            score += 20
+
+        # -------------------------
+        # PITCH EMAIL — 10 POINTS
+        # -------------------------
+        if publisher.pitch_email:
+            score += 10
 
         return score
 
