@@ -1,0 +1,262 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Header -->
+
+  <div class="d-flex align-items-center justify-content-between mb-3">
+
+    <!-- Scout Results -->
+    <span class="badge rounded-pill text-bg-success px-3 py-2">
+        Scout Results
+    </span>
+
+    <!-- New Search -->
+    <a
+        href="{% url 'chatbot:new_search' %}"
+        class="btn btn-outline-dark btn-sm rounded-pill px-3"
+    >
+        ← New Search
+    </a>
+
+</div>
+
+<div class="text-center mb-5">
+
+    <h1 class="fw-bold">
+        Publishers that fit your game
+    </h1>
+
+    <p class="text-muted mx-auto" style="max-width: 650px;">
+        Scout analyzed your requirements and found the publishers
+        that best match your project.
+    </p>
+
+</div>
+
+
+    <!-- Requirements summary -->
+
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+        <div class="card-body p-4">
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <small class="text-muted d-block mb-1">
+                        GAME TYPE
+                    </small>
+
+                    <strong>
+                        {{ requirements.game_type }}
+                    </strong>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <small class="text-muted d-block mb-1">
+                        PLATFORMS
+                    </small>
+
+                    <strong>
+
+                        {% for platform in requirements.platforms %}
+
+                            {{ platform }}{% if not forloop.last %}, {% endif %}
+
+                        {% endfor %}
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Results -->
+
+    {% if results %}
+
+        <div class="row g-4">
+
+            {% for result in results %}
+
+                <div class="col-12">
+
+                    <div class="card border-0 shadow-sm rounded-4">
+
+                        <div class="card-body p-4">
+
+                            <div class="row align-items-center">
+
+                                <!-- Publisher -->
+
+                                <div class="col-lg-7">
+
+                                    <div class="d-flex align-items-start">
+
+                                        <div
+                                            class="rounded-3 d-flex align-items-center justify-content-center me-3"
+                                            style="
+                                                width:52px;
+                                                height:52px;
+                                                background:#f0fff2;
+                                                color:#00b91f;
+                                            "
+                                        >
+                                            <strong>
+                                                {{ result.publisher.name|first }}
+                                            </strong>
+                                        </div>
+
+                                        <div>
+
+                                            <h4 class="fw-bold mb-1">
+                                                {{ result.publisher.name }}
+                                            </h4>
+
+                                            <p class="text-muted mb-2">
+                                                {{ result.publisher.game_types_focus }}
+                                            </p>
+
+                                            <div>
+                                                <span class="badge bg-light text-dark border">
+                                                    {{ result.publisher.platforms }}
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Score -->
+
+                                <div class="col-lg-2 text-lg-center mt-3 mt-lg-0">
+
+                                    <small class="text-muted d-block">
+                                        MATCH
+                                    </small>
+
+                                    <span
+                                        class="fs-3 fw-bold"
+                                        style="color:#00b91f;"
+                                    >
+                                        {{ result.score|floatformat:0 }}%
+                                    </span>
+
+                                </div>
+
+
+                                <!-- Action -->
+
+                                <div class="col-lg-3 text-lg-end mt-3 mt-lg-0">
+
+                                    {% if result.publisher.official_website %}
+
+                                        <a
+                                            href="{{ result.publisher.official_website }}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="btn btn-dark rounded-3 px-4"
+                                        >
+                                            Visit Publisher →
+                                        </a>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Contact -->
+
+                           {% if result.publisher.pitch_url %}
+
+                            <div class="border-top mt-4 pt-3">
+
+                                <div class="d-flex align-items-center justify-content-between">
+
+                                    <div>
+                                        <small class="text-muted d-block">
+                                            Pitch
+                                        </small>
+
+                                        <span class="text-muted">
+                                            Submit your game to this publisher.<br>
+                                           <em style="color:#00D623;"> {{ result.publisher.pitch_email }}</em>
+                                        </span>
+                                    </div>
+                                    
+                                    <a
+                                        href="{{ result.publisher.pitch_url }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="btn btn-success rounded-3 px-4"
+                                    >
+                                        Pitch Now →
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <!-- No results -->
+
+        <div class="card border-0 shadow-sm rounded-4">
+
+            <div class="card-body text-center py-5">
+
+                <h3 class="fw-bold">
+                    No strong matches found
+                </h3>
+
+                <p class="text-muted mb-4">
+                    Scout couldn't find publishers that meet
+                    the minimum matching score.
+                </p>
+
+                <a
+                    href="{% url 'chatbot:new_search' %}"
+                    class="btn btn-dark rounded-3 px-4"
+                >
+                    Try Again
+                </a>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock content %}

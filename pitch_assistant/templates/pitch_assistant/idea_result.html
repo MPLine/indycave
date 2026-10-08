@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="mb-4">
+
+                <span class="badge rounded-pill text-bg-success px-3 py-2">
+                    Idea Received
+                </span>
+
+                <h1 class="mt-3 mb-2">
+                    Your Game Idea
+                </h1>
+
+                <p class="text-muted">
+                    This is the information Pitch Assistant received.
+                    The next step will analyze it and find your strongest pitch points.
+                </p>
+
+            </div>
+
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body p-4 p-lg-5">
+
+                    <!-- Game Title -->
+                    <div class="mb-4">
+
+                        <small class="text-muted d-block mb-1">
+                            Game Title
+                        </small>
+
+                        <h3 class="mb-0">
+                            {{ idea.game_title }}
+                        </h3>
+
+                    </div>
+
+
+                    <!-- Genre -->
+                    <div class="mb-4">
+
+                        <small class="text-muted d-block mb-1">
+                            Genre
+                        </small>
+
+                        <span class="badge rounded-pill text-bg-light border px-3 py-2">
+                            {{ idea.game_genre }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- Game Idea -->
+                    <div class="mb-4">
+
+                        <small class="text-muted d-block mb-1">
+                            Game Idea
+                        </small>
+
+                        <p class="mb-0">
+                            {{ idea.game_idea|linebreaksbr }}
+                        </p>
+
+                    </div>
+
+
+                    <!-- Special Feature -->
+                    {% if idea.special_feature %}
+
+                    <div class="mb-4">
+
+                        <small class="text-muted d-block mb-1">
+                            What Makes It Special
+                        </small>
+
+                        <p class="mb-0">
+                            {{ idea.special_feature|linebreaksbr }}
+                        </p>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- Next Step -->
+                    <div class="bg-light rounded-4 p-4 mt-4">
+
+                        <h5 class="mb-2">
+                            Next Step
+                        </h5>
+
+                        <p class="text-muted mb-0">
+                            Pitch Assistant will analyze your idea,
+                            identify the strongest hook, and help turn it
+                            into a publisher-friendly game description.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Back -->
+                    <div class="d-flex justify-content-between mt-4">
+
+                        <a
+                            href="{% url 'pitch_assistant:idea' %}"
+                            class="btn btn-outline-dark rounded-3 px-4"
+                        >
+                            ← Edit Idea
+                        </a>
+
+                        <button
+                            class="btn btn-dark rounded-3 px-4"
+                            disabled
+                        >
+                            Analyze Idea →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

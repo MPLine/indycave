@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from .chatbot import Chatbot
 
@@ -83,3 +84,15 @@ def results(request):
             "requirements": requirements,
         }
     )
+
+
+def new_search(request):
+
+    request.session["chatbot"] = {
+        "current_question": 0,
+        "requirements": {}
+    }
+
+    request.session.modified = True
+
+    return redirect("chatbot:chat")
