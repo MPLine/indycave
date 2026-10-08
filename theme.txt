@@ -1,0 +1,5 @@
+Brand
+ ├── #1C1C1C  → primary/dark
+ ├── #00D623  → accent/action
+ ├── White    → cards
+ └── #F5F7F6 → application background

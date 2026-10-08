@@ -1,0 +1,204 @@
+{% extends "layout.html" %}
+
+
+
+{% block content %}
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main-wrapper">
+
+
+    <!-- INTRO -->
+
+    <section class="intro">
+
+        <h1>
+            Find the right publisher
+        </h1>
+
+        <p>
+            Tell Scout a little about your game.
+            We'll use your answers to find the publishers
+            that best fit your project.
+        </p>
+
+    </section>
+
+
+
+    <!-- PROGRESS -->
+
+    <div class="progress-area">
+
+        <div class="progress-info">
+
+            <span>
+                Your project
+            </span>
+
+            <span>
+                Question {{ question_number|default:"1" }} of {{ total_questions|default:"2" }}
+            </span>
+
+        </div>
+
+
+        <div class="progress">
+
+            <div
+                class="progress-bar"
+                role="progressbar"
+                style="width: 50%;"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUESTION -->
+
+    {% if question %}
+
+    <div class="question-card">
+
+        <div class="question-label">
+
+            <span></span>
+
+            SCOUT QUESTION
+
+        </div>
+
+
+        <h2 class="question-title">
+            {{ question.question }}
+        </h2>
+
+
+        <p class="question-description">
+
+            Choose the option that best describes your project.
+
+        </p>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            {% if question.type == "single" %}
+
+            <div class="options single">
+
+                {% for option in question.options %}
+
+                <label class="option">
+
+                    <input
+                        type="radio"
+                        name="answer"
+                        value="{{ option }}"
+                        required
+                    >
+
+                    <div class="option-content">
+
+                        <div class="option-indicator"></div>
+
+                        <span class="option-text">
+                            {{ option }}
+                        </span>
+
+                    </div>
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+
+            {% elif question.type == "multiple" %}
+
+            <div class="options multiple">
+
+                {% for option in question.options %}
+
+                <label class="option">
+
+                    <input
+                        type="checkbox"
+                        name="answers"
+                        value="{{ option }}"
+                    >
+
+                    <div class="option-content">
+
+                        <div class="option-indicator"></div>
+
+                        <span class="option-text">
+                            {{ option }}
+                        </span>
+
+                    </div>
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+            {% endif %}
+
+
+
+            <div class="question-footer">
+
+                <span class="helper-text">
+
+                    {% if question.type == "multiple" %}
+                        You can select more than one.
+                    {% else %}
+                        Select one option to continue.
+                    {% endif %}
+
+                </span>
+
+
+                <button
+                    type="submit"
+                    class="continue-btn"
+                >
+                    Continue →
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    {% else %}
+
+        <div class="question-card text-center">
+
+            <h2>
+                Scout is ready.
+            </h2>
+
+            <p class="text-muted mb-0">
+                No questions are available right now.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</main>
+{%endblock content%}
+
