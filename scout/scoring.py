@@ -15,24 +15,31 @@ def calculate_score(self, publisher, requirements):
     # -------------------------
     # PLATFORMS = 40 POINTS
     # -------------------------
+    
+# PLATFORMS — 40 POINTS
     if platforms:
 
         publisher_platforms = [
             p.strip().lower()
-            for p in publisher.platforms.split(",")
+            for p in (publisher.platforms or "").split(",")
         ]
 
-        matched_platforms = 0
+        requested_platforms = [
+            p.strip().lower()
+            for p in platforms
+        ]
 
-        for platform in platforms:
-            if platform.lower() in publisher_platforms:
-                matched_platforms += 1
+        matched_platforms = sum(
+            1
+            for platform in requested_platforms
+            if platform in publisher_platforms
+        )
 
-        platform_score = (
-            matched_platforms / len(platforms)
-        ) * 40
+        if requested_platforms:
+            points_per_platform = 40 / len(requested_platforms)
 
-        score += platform_score
+            score += matched_platforms * points_per_platform
+
 
     # -------------------------
     # PITCH URL = 20 POINTS

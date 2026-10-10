@@ -199,16 +199,7 @@
                                         <span class="text-muted">
                                             Submit your game to this publisher.<br>
                                            <em style="color:#00D623;"> {{ result.publisher.pitch_email }}</em>
-                                        <div class="d-flex gap-2"><br>
-
-                                        <a
-                                            href="{% url 'pitch_assistant:idea' %}?publisher={{ result.publisher.id }}"
-                                            class="btn btn-dark rounded-3 px-4"
-                                        >
-                                            Prepare Pitch →
-                                        </a>
-
-                                    </div>
+                               
                                         </span>
                                     </div>
                                     
@@ -219,6 +210,13 @@
                                         class="btn btn-success rounded-3 px-4"
                                     >
                                         Pitch Now →
+                                    </a>
+                                    <a
+                                            href="{% url 'pitch_assistant:idea' %}?publisher={{ result.publisher.id }} "
+                                            target="_blank"
+                                            class="btn btn-outline-dark rounded-3 px-4"
+                                        >
+                                            Prepare Pitch →
                                     </a>
 
                                 </div>
