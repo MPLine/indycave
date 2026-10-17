@@ -7,4 +7,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("chat/", include("chatbot.urls")),
     path("pitch/",include("pitch_assistant.urls")),
+    path("auth/", include("authentication.urls")),
 ]

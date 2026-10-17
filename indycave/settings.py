@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'database',
     'chatbot',
     'pitch_assistant',
+    'indie_dev_scout',
+    'authentication',
 ]
 
 MIDDLEWARE = [
