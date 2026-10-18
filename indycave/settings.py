@@ -26,9 +26,13 @@ SECRET_KEY = 'django-insecure-$8tgds_^4hj@%-ao*7v%(clg*4_81vr&hday&g#@_#iv9noqu&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['indycave.onrender.com']
+ALLOWED_HOSTS = [
+    "indycave.onrender.com",
+]
 
-CSRF_TRUSTED_ORIGINS = ['https://indycave.onrender.com/chat/']
+CSRF_TRUSTED_ORIGINS = [
+    "https://indycave.onrender.com",
+]
 
 
 # Application definition
