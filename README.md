@@ -149,14 +149,7 @@ A license has not yet been specified. All rights and permissions remain with the
 
 **IndyCave — Helping indie developers find their next opportunity.**
 
- <p>
-          <center>  <form action="https://www.paypal.com/donate" method="post" target="_blanc">
-            <input type="hidden" name="business" value="HLXWFSF3F5F3Q" />
-            <input type="hidden" name="no_recurring" value="0" />
-            <input type="hidden" name="currency_code" value="USD" />
-            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-            <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-            </form>
-           <p style=" color: #055411;"> Keep the Project Alive, Make a Donation.</p></center>
-        </p>
+
+  <center><p style=" color: #055411;"><a href="https://www.paypal.com/donate?token=b6E5gjWGkvWiRgNNu1j35WYAOT6-9aGtuw4-s9dKSBlukApVuBnYca1lcVR-XfRxcvZg9oY-GM5YYkkb"> Keep the Project Alive, Make a Donation</a></p></center>
+
 
