@@ -151,7 +151,7 @@ A license has not yet been specified. All rights and permissions remain with the
 
 
   <center><p style=" color: #055411;"><a href="https://www.paypal.com/donate?token=b6E5gjWGkvWiRgNNu1j35WYAOT6-9aGtuw4-s9dKSBlukApVuBnYca1lcVR-XfRxcvZg9oY-GM5YYkkb" target="_blanc">
-  <img src="donate.png"><br>  Keep the Project Alive, Make a Donation
+  <img src="../donate.png"><br>  Keep the Project Alive, Make a Donation
     </a></p></center>
 
 
