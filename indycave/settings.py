@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['indycave.onrender.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://indycave.onrender.com/']
+CSRF_TRUSTED_ORIGINS = ['https://indycave.onrender.com/chat/']
 
 
 # Application definition
