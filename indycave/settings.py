@@ -27,12 +27,12 @@ SECRET_KEY = 'django-insecure-$8tgds_^4hj@%-ao*7v%(clg*4_81vr&hday&g#@_#iv9noqu&
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "indycave.onrender.com",
+    #"indycave.onrender.com",
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://indycave.onrender.com",
-]
+#CSRF_TRUSTED_ORIGINS = [
+ #   "https://indycave.onrender.com",
+#]
 
 
 # Application definition
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'pitch_assistant',
     'indie_dev_scout',
     'authentication',
+    'games',
 ]
 
 MIDDLEWARE = [
