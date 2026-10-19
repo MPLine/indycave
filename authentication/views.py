@@ -6,7 +6,7 @@ from django.contrib import messages
 
 def admin_login(request):
     if request.user.is_authenticated and request.user.is_staff:
-        #return redirect("indie_dev_scout:dashboard")
+        return redirect("indie_dev_scout:dashboard")
         print("enter")
 
     if request.method == "POST":
@@ -33,4 +33,4 @@ def admin_logout(request):
         logout(request)
         return redirect("authentication:login")
 
-    #return redirect("indie_dev_scout:dashboard")
+    return redirect("indie_dev_scout:dashboard")
