@@ -207,5 +207,11 @@
 
     </div>
 </div>
+{% if user.is_authenticated and user.is_staff %}
+    <a href="{% url 'admin:index' %}" class="btn btn-outline-primary" target="_blank">
+        <i class="bi bi-gear me-1"></i>
+        Admin Panel
+    </a>
+{% endif %}
 
 {% endblock content %}
