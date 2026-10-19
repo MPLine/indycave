@@ -150,6 +150,8 @@ A license has not yet been specified. All rights and permissions remain with the
 **IndyCave — Helping indie developers find their next opportunity.**
 
 
-  <center><p style=" color: #055411;"><a href="https://www.paypal.com/donate?token=b6E5gjWGkvWiRgNNu1j35WYAOT6-9aGtuw4-s9dKSBlukApVuBnYca1lcVR-XfRxcvZg9oY-GM5YYkkb"> Keep the Project Alive, Make a Donation</a></p></center>
+  <center><p style=" color: #055411;"><a href="https://www.paypal.com/donate?token=b6E5gjWGkvWiRgNNu1j35WYAOT6-9aGtuw4-s9dKSBlukApVuBnYca1lcVR-XfRxcvZg9oY-GM5YYkkb" target="_blanc">
+<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" /><br>  Keep the Project Alive, Make a Donation
+    </a></p></center>
 
 
