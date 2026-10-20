@@ -10,9 +10,11 @@ from django.contrib import messages
 
 
 def admin_login(request):
-    if request.user.is_authenticated and request.user.is_staff:
-        return redirect("indie_dev_scout:dashboard")
-        print("enter")
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return redirect("indie_dev_scout:dashboard")
+        else:
+            return redirect("authentication:developer_dashboard")
 
     if request.method == "POST":
         username = request.POST.get("username", "").strip()
@@ -24,9 +26,12 @@ def admin_login(request):
             password=password
         )
 
-        if user is not None and user.is_staff and user.is_active:
+        if user is not None and user.is_active:
             login(request, user)
-            return redirect("indie_dev_scout:dashboard")
+            if user.is_staff:
+                return redirect("indie_dev_scout:dashboard")
+            else:
+                return redirect("authentication:developer_dashboard")
 
         messages.error(request, "Username oswa password pa kòrèk.")
 
