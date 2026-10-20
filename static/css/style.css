@@ -420,3 +420,461 @@
                 width: 100%;
             }
         }
+
+            /* =========================
+   WELCOME ANIMATION
+========================= */
+
+@keyframes welcomeFadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes welcomeFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* Hero */
+
+.welcome-badge {
+    animation: welcomeFadeIn 0.6s ease-out both;
+}
+
+
+.welcome-title {
+    animation: welcomeFadeUp 0.7s ease-out 0.1s both;
+}
+
+
+.welcome-description {
+    animation: welcomeFadeUp 0.7s ease-out 0.2s both;
+}
+
+
+.welcome-button {
+    animation: welcomeFadeUp 0.7s ease-out 0.3s both;
+}
+
+
+.welcome-note {
+    animation: welcomeFadeIn 0.7s ease-out 0.5s both;
+}
+
+
+/* Section title */
+
+.welcome-container > .mb-4 {
+    animation: welcomeFadeUp 0.7s ease-out 0.4s both;
+}
+
+
+/* Cards */
+
+.welcome-step {
+    opacity: 0;
+    animation: welcomeFadeUp 0.65s ease-out forwards;
+}
+
+.welcome-step:nth-child(1) {
+    animation-delay: 0.45s;
+}
+
+.welcome-step:nth-child(2) {
+    animation-delay: 0.60s;
+}
+
+.welcome-step:nth-child(3) {
+    animation-delay: 0.75s;
+}
+
+
+/* Button hover */
+
+.welcome-button {
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.welcome-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+}
+
+
+/* Card hover */
+
+.welcome-step {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.welcome-step:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .welcome-badge,
+    .welcome-title,
+    .welcome-description,
+    .welcome-button,
+    .welcome-note,
+    .welcome-container > .mb-4,
+    .welcome-step {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+}
+
+    .welcome-page {
+        background: #f5f7f6;
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+    }
+
+    .welcome-container {
+        max-width: 1050px;
+        margin: 0 auto;
+    }
+
+    .welcome-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        background: #ffffff;
+        border: 1px solid #e3e7e4;
+        border-radius: 999px;
+
+        padding: 7px 14px;
+
+        font-size: 13px;
+        color: #737a76;
+    }
+
+    .welcome-dot {
+        width: 7px;
+        height: 7px;
+        background: #00d623;
+        border-radius: 50%;
+    }
+
+    .welcome-title {
+        font-size: clamp(42px, 6vw, 70px);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -2px;
+        color: #1c1c1c;
+        max-width: 780px;
+    }
+
+    .welcome-title span {
+        color: #00d623;
+    }
+
+    .welcome-description {
+        font-size: 19px;
+        line-height: 1.65;
+        color: #737a76;
+        max-width: 680px;
+    }
+
+    .welcome-button {
+        background: #1c1c1c;
+        color: #ffffff;
+        border: none;
+
+        padding: 14px 24px;
+        border-radius: 12px;
+
+        font-weight: 600;
+        transition: all .15s ease;
+    }
+
+    .welcome-button:hover {
+        background: #111111;
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+
+    .welcome-step {
+        background: #ffffff;
+        border: 1px solid #e3e7e4;
+        border-radius: 18px;
+
+        padding: 24px;
+        height: 100%;
+    }
+
+    .step-number {
+        width: 38px;
+        height: 38px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #1c1c1c;
+        color: #ffffff;
+
+        border-radius: 10px;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        margin-bottom: 18px;
+    }
+
+    .welcome-step h5 {
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .welcome-step p {
+        color: #737a76;
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+
+    .welcome-note {
+        color: #737a76;
+        font-size: 13px;
+    }
+
+    @media (max-width: 767px) {
+
+        .welcome-page {
+            align-items: flex-start;
+        }
+
+        .welcome-title {
+            letter-spacing: -1px;
+        }
+
+        .welcome-description {
+            font-size: 17px;
+        }
+
+    }
+
+/* =====================================================
+   INDYCAVE DARK THEME
+   Overrides the existing light theme without removing
+   current layouts, responsive rules, or animations.
+===================================================== */
+
+:root {
+    --indy-black: #f2f5f2;
+    --indy-dark: #101310;
+    --indy-green: #00d623;
+    --indy-light: #141814;
+    --indy-border: #303830;
+    --indy-muted: #a4ada5;
+    --indy-panel: #1c221d;
+    --indy-panel-hover: #242c25;
+}
+
+html, body {
+    background-color: var(--indy-light);
+    color: var(--indy-black);
+}
+
+body { color-scheme: dark; }
+
+.navbar-custom {
+    background-color: var(--indy-dark);
+    border-bottom-color: var(--indy-border);
+}
+
+.brand, .brand:hover, .brand:focus, .brand-name {
+    color: var(--indy-black);
+}
+
+.brand-tag { color: var(--indy-muted); }
+
+.scout-badge {
+    background-color: #19291c;
+    color: var(--indy-green);
+}
+
+.intro h1, .question-title { color: var(--indy-black); }
+
+.intro p, .question-description, .progress-info, .helper-text {
+    color: var(--indy-muted);
+}
+
+.question-card {
+    background-color: var(--indy-panel);
+    border-color: var(--indy-border);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+}
+
+.question-label { color: var(--indy-green); }
+.progress { background-color: #303830; }
+.progress-bar { background-color: var(--indy-green); }
+
+.option-content {
+    background-color: #191e1a;
+    border-color: var(--indy-border);
+    color: var(--indy-black);
+}
+
+.option-content:hover {
+    background-color: var(--indy-panel-hover);
+    border-color: var(--indy-green);
+}
+
+.option-indicator { border-color: #899389; }
+
+.option input:checked + .option-content {
+    background-color: #1b3020;
+    border-color: var(--indy-green);
+    color: #f2f5f2;
+    box-shadow: 0 0 0 3px rgba(0, 214, 35, 0.10);
+}
+
+.option input:checked + .option-content .option-indicator {
+    border-color: var(--indy-green);
+    background-color: var(--indy-green);
+}
+
+.option input:checked + .option-content .option-indicator::after {
+    color: #101310;
+}
+
+.question-footer { border-top-color: var(--indy-border); }
+
+.continue-btn {
+    background-color: var(--indy-green);
+    color: #101310;
+}
+
+.continue-btn:hover {
+    background-color: #00ef28;
+    color: #101310;
+}
+
+/* Welcome page */
+.welcome-page {
+    background: var(--indy-light);
+    color: var(--indy-black);
+}
+
+.welcome-badge {
+    background-color: #19291c;
+    border-color: #304433;
+    color: var(--indy-muted);
+}
+
+.welcome-title { color: var(--indy-black); }
+.welcome-title span { color: var(--indy-green); }
+
+.welcome-description, .welcome-note, .welcome-step p {
+    color: var(--indy-muted);
+}
+
+.welcome-step {
+    background-color: var(--indy-panel);
+    border-color: var(--indy-border);
+    color: var(--indy-black);
+}
+
+.step-number {
+    background-color: var(--indy-green);
+    color: #101310;
+}
+
+.welcome-button {
+    background-color: var(--indy-green);
+    color: #101310;
+}
+
+.welcome-button:hover {
+    background-color: #00ef28;
+    color: #101310;
+    box-shadow: 0 8px 20px rgba(0, 214, 35, 0.12);
+}
+
+.welcome-step:hover {
+    border-color: #426448;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
+}
+
+/* Bootstrap cards and form controls */
+.card {
+    background-color: var(--indy-panel);
+    color: var(--indy-black);
+    border-color: var(--indy-border);
+}
+
+.card-header, .card-footer {
+    background-color: #171c18;
+    border-color: var(--indy-border);
+    color: var(--indy-black);
+}
+
+.form-control, .form-select, textarea,
+input[type="text"], input[type="email"], input[type="url"],
+input[type="password"], input[type="number"] {
+    background-color: #191e1a;
+    color: var(--indy-black);
+    border-color: var(--indy-border);
+}
+
+.form-control::placeholder, textarea::placeholder, input::placeholder {
+    color: #899389;
+}
+
+.form-control:focus, .form-select:focus, textarea:focus, input:focus {
+    background-color: #191e1a;
+    color: var(--indy-black);
+    border-color: var(--indy-green);
+    box-shadow: 0 0 0 0.2rem rgba(0, 214, 35, 0.15);
+}
+
+.form-select option {
+    background-color: #191e1a;
+    color: var(--indy-black);
+}
+
+a { color: var(--indy-green); }
+a:hover { color: #00ef28; }
+
+.text-dark { color: var(--indy-black) !important; }
+.text-muted { color: var(--indy-muted) !important; }
+.bg-white { background-color: var(--indy-panel) !important; }
+.border { border-color: var(--indy-border) !important; }
+
+@media (max-width: 650px) {
+    .question-card { background-color: var(--indy-panel); }
+}

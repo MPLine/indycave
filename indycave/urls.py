@@ -8,6 +8,7 @@ urlpatterns = [
     path("chat/", include("chatbot.urls")),
     path("pitch/",include("pitch_assistant.urls")),
     path("APP/", include("authentication.urls")),
-    path("indie_dev_scout/",include("indie_dev_scout.urls"),),
+    path("indie_dev_scout/",include("indie_dev_scout.urls")),
+    path("games/", include("games.urls")),
 
 ]

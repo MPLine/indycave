@@ -1,0 +1,192 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container py-5">
+
+    <div class="mb-4">
+        <a href="{% url 'authentication:developer_dashboard' %}"
+           class="text-decoration-none">
+            <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+        </a>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- LEFT COLUMN: GAME DETAILS -->
+        <div class="col-lg-7">
+
+            <div class="mb-4">
+                {% if game.cover_image %}
+                    <img src="{{ game.cover_image.url }}"
+                         alt="{{ game.title }}"
+                         class="img-fluid rounded-3 w-100"
+                         style="max-height: 380px; object-fit: cover;">
+                {% else %}
+                    <div class="bg-body-secondary rounded-3 d-flex align-items-center justify-content-center"
+                         style="height: 260px;">
+                        <i class="bi bi-controller fs-1 text-muted"></i>
+                    </div>
+                {% endif %}
+            </div>
+
+            <h1 class="h2 fw-bold mb-2">{{ game.title }}</h1>
+
+            <div class="d-flex flex-wrap gap-2 mb-4">
+                <span class="badge text-bg-primary">
+                    {{ game.get_genre_display }}
+                </span>
+
+                <span class="badge text-bg-secondary">
+                    {{ game.get_development_stage_display }}
+                </span>
+            </div>
+
+            <section class="mb-4">
+                <h2 class="h5 fw-semibold">About the Game</h2>
+                <p class="text-muted" style="white-space: pre-line;">
+                    {{ game.short_description }}
+                </p>
+            </section>
+
+            <section class="mb-4">
+                <h2 class="h5 fw-semibold">Platforms</h2>
+
+                <div class="d-flex flex-wrap gap-2">
+                    {% for platform in game.platforms %}
+                        <span class="badge text-bg-secondary">
+                            {{ platform|title }}
+                        </span>
+                    {% empty %}
+                        <span class="text-muted">No platforms listed.</span>
+                    {% endfor %}
+                </div>
+            </section>
+
+            {% if game.official_page_url or game.gameplay_demo_url %}
+                <section class="mb-4">
+                    <h2 class="h5 fw-semibold">Game Links</h2>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        {% if game.official_page_url %}
+                            <a href="{{ game.official_page_url }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn btn-outline-success">
+                                <i class="bi bi-globe me-1"></i>
+                                Official Game Page
+                            </a>
+                        {% endif %}
+
+                        {% if game.gameplay_demo_url %}
+                            <a href="{{ game.gameplay_demo_url }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn btn-outline-success">
+                                <i class="bi bi-play-circle me-1"></i>
+                                Gameplay / Demo
+                            </a>
+                        {% endif %}
+                    </div>
+                </section>
+            {% endif %}
+
+            <p class="text-muted small">
+                Added on {{ game.created_at|date:"M d, Y" }}
+            </p>
+
+        </div>
+
+        <!-- RIGHT COLUMN: PUBLISHER LIST -->
+        <div class="col-lg-5">
+
+            <div class="mb-3">
+                <h2 class="h4 fw-bold">Matched Publishers</h2>
+                <p class="text-muted small">
+                    Publishers selected for your game.
+                </p>
+            </div>
+
+            {% if publisher_matches %}
+
+                <div class="d-flex flex-column gap-3">
+
+                    {% for match in publisher_matches %}
+                        <div class="border rounded-3 p-3">
+
+                            <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                                <h3 class="h6 fw-bold mb-0">
+                                    {{ match.publisher.name }}
+                                </h3>
+
+                                <span class="badge text-bg-success">
+                                    Sent
+                                </span>
+                            </div>
+
+                            <p class="text-muted small mb-2">
+                                {{ match.publisher.game_types_focus|default:"Game focus not specified" }}
+                            </p>
+
+                            {% if match.publisher.platforms %}
+                                <p class="small mb-2">
+                                    <strong>Platforms:</strong>
+                                    {{ match.publisher.platforms }}
+                                </p>
+                            {% endif %}
+
+                            <p class="small mb-3">
+                                <strong>Match score:</strong>
+                                {{ match.match_score }}%
+                            </p>
+
+                            {% if match.publisher.official_website %}
+                                <a href="{{ match.publisher.official_website }}"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="btn btn-sm btn-outline-secondary mb-2">
+                                    Official Website
+                                </a>
+                            {% endif %}
+
+                            {% if match.publisher.pitch_url %}
+                                <a href="{{ match.publisher.pitch_url }}"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="btn btn-sm btn-success mb-2">
+                                    Pitch Now
+                                </a>
+                            {% elif match.publisher.pitch_email %}
+                                <a href="mailto:{{ match.publisher.pitch_email }}"
+                                   class="btn btn-sm btn-success mb-2">
+                                    Contact Publisher
+                                </a>
+                            {% endif %}
+
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="border rounded-3 p-4 text-center">
+                    <i class="bi bi-search fs-2 text-muted"></i>
+
+                    <h3 class="h6 mt-3">
+                        Your publisher list is being prepared
+                    </h3>
+
+                    <p class="text-muted small mb-0">
+                        Your matched publishers will appear here once
+                        the list has been approved and sent to you.
+                    </p>
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

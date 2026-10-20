@@ -26,20 +26,8 @@
 
     <div class="row g-3 mb-4">
 
-        <div class="col-md-6 col-xl-3">
-            <div class="card h-100">
-                <div class="card-body">
-                    <i class="bi bi-controller fs-3 text-primary"></i>
-                    <h2 class="h6 mt-3">My Games</h2>
-                    <p class="text-muted small">
-                        Manage your registered game projects.
-                    </p>
-                    <span class="badge text-bg-secondary">Coming soon</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-4">
             <div class="card h-100">
                 <div class="card-body">
                     <i class="bi bi-search fs-3 text-primary"></i>
@@ -47,14 +35,14 @@
                     <p class="text-muted small">
                         Submit a game for publisher matching.
                     </p>
-                    <button class="btn btn-primary btn-sm" disabled>
-                        Add a game first
-                    </button>
+                    <a href="{% url 'games:add_game' %}" class="btn btn-success">
+                        Add Game
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-4">
             <div class="card h-100">
                 <div class="card-body">
                     <i class="bi bi-clock-history fs-3 text-primary"></i>
@@ -62,36 +50,138 @@
                     <p class="text-muted small">
                         Track games awaiting admin review.
                     </p>
-                    <span class="badge text-bg-secondary">0 pending</span>
+                    <span class="badge text-bg-secondary">
+                        {{ pending_games_count }} Pending
+                    </span>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6 col-xl-3">
+        <div class="col-md-6 col-xl-4">
             <div class="card h-100">
                 <div class="card-body">
                     <i class="bi bi-building fs-3 text-primary"></i>
-                    <h2 class="h6 mt-3">My Publishers</h2>
+                    <h2 class="h6 mt-3">Games approved</h2>
                     <p class="text-muted small">
-                        View publishers approved and shared by IndyCave.
+                        GAME approved and shared by IndyCave.
                     </p>
-                    <span class="badge text-bg-secondary">0 publishers</span>
+                    <span class="badge text-bg-secondary">
+                        {{ approved_games_count }} approved 
+                    </span>
                 </div>
             </div>
         </div>
 
     </div>
+    
+<!-- My Games Section -->
+<div class="mb-4">
 
-    <div class="card">
-        <div class="card-body p-4">
-            <h2 class="h5">Get started with IndyCave</h2>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+            <h2 class="h4 mb-1">My Games</h2>
             <p class="text-muted mb-0">
-                Your developer workspace is ready. The next step is to
-                register your game so the IndyCave team can review it
-                before matching it with suitable publishers.
+                Manage your registered games and publisher requests.
             </p>
         </div>
+
+        <a href="{% url 'games:add_game' %}" class="btn btn-success">
+            <i class="bi bi-plus-lg me-1"></i>
+            Add Game
+        </a>
     </div>
+
+    {% if games %}
+
+        <div class="d-flex flex-column gap-3">
+
+            {% for game in games %}
+
+                <div class="border rounded-3 p-3">
+                    <div class="row align-items-center g-3">
+
+                        <!-- Game Cover -->
+                        <div class="col-auto">
+                            {% if game.cover_image %}
+                                <img src="{{ game.cover_image.url }}"
+                                     alt="{{ game.title }}"
+                                     class="rounded"
+                                     style="width: 120px; height: 85px; object-fit: cover;">
+                            {% else %}
+                                <div class="bg-body-secondary rounded d-flex align-items-center justify-content-center"
+                                     style="width: 120px; height: 85px;">
+                                    <i class="bi bi-controller fs-2 text-muted"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Game Information -->
+                        <div class="col">
+                            <h3 class="h6 fw-bold mb-2">
+                                {{ game.title }}
+                            </h3>
+
+                            <p class="text-muted small mb-2">
+                                {{ game.get_genre_display }}
+                            </p>
+
+                            <div>
+                                {% for platform in game.platforms %}
+                                    <span class="badge text-bg-secondary me-1 mb-1">
+                                        {{ platform|title }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Publisher Status -->
+                        <div class="col-12 col-md-auto">
+                            
+                            {% if game.publisher_status == "pending" %}
+                                <span class="badge text-bg-warning">
+                                    Pending
+                                </span>
+
+                            {% elif game.publisher_status == "publisher_list_ready" %}
+                                <span class="badge text-bg-success">
+                                    Publisher List Ready
+                                </span>
+                            {% else %}
+                                <span class="badge text-bg-secondary">
+                                    {{ game.get_publisher_status_display }}
+                                </span>
+                            {% endif %}<br>
+                            <a href="{% url 'games:game_detail' game.id %}"
+                            class="btn btn-outline-success btn-sm mb-2" style="margin-top:20px">
+                                <i class="bi bi-eye me-1"></i>
+                                Details
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="text-center py-5 border rounded-3">
+            <i class="bi bi-controller fs-1 text-muted"></i>
+            <h3 class="h6 mt-3">No games registered yet</h3>
+            <p class="text-muted mb-3">
+                Add your first game to get started with IndyCave.
+            </p>
+            <a href="{% url 'games:add_game' %}" class="btn btn-success">
+                Add Your First Game
+            </a>
+        </div>
+
+    {% endif %}
+
+</div>
+
 
 </div>
 {% endblock content %}

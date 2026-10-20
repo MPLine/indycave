@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
-
+from games.models import Game
 
 def admin_login(request):
     if request.user.is_authenticated:
@@ -94,3 +94,34 @@ def developer_dashboard(request):
             "profile": profile,
         },
     )
+
+
+
+@login_required(login_url="authentication:login")
+def developer_dashboard(request):
+    if request.user.is_staff:
+        return redirect("indie_dev_scout:dashboard")
+
+    profile = getattr(request.user, "developer_profile", None)
+
+    games = Game.objects.filter(
+        developer=request.user
+    ).order_by("-created_at")
+    pending_games_count = games.filter(
+        publisher_status="pending"
+    ).count()
+
+    approved_games_count = games.filter(
+        publisher_status="publisher_list_ready"
+    ).count()
+    return render(
+        request,
+        "authentication/developer_dashboard.html",
+        {
+            "profile": profile,
+            "games": games,
+            "pending_games_count": pending_games_count,
+            "approved_games_count": approved_games_count,
+        },
+    )
+   
