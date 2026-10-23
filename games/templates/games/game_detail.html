@@ -156,11 +156,20 @@
                                    class="btn btn-sm btn-success mb-2">
                                     Pitch Now
                                 </a>
+                                 <a
+                                            href="{% url 'pitch_assistant:idea' %}?publisher={{ result.publisher.id }} "
+                                            target="_blank"
+                                            class="btn btn-outline-success rounded-3 px-3"
+                                            style="margin-left:60px"
+                                        >
+                                            Prepare Pitch →
+                                    </a>
                             {% elif match.publisher.pitch_email %}
                                 <a href="mailto:{{ match.publisher.pitch_email }}"
                                    class="btn btn-sm btn-success mb-2">
                                     Contact Publisher
                                 </a>
+                                
                             {% endif %}
 
                         </div>

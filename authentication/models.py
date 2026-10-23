@@ -26,6 +26,10 @@ class DeveloperProfile(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    profile_image = models.ImageField(
+    upload_to="static/images/profile_photos/",
+    blank=True,
+    null=True,
+)
     def __str__(self):
         return self.studio_name or self.user.username

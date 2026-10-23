@@ -143,7 +143,7 @@ IndyCave is currently under active development. Features, architecture, and work
 
 ## 📄 License
 
-A license has not yet been specified. All rights and permissions remain with the respective copyright holders until a license is added.
+This project is distributed under the MIT License. See the LICENSE file.
 
 ---
 
